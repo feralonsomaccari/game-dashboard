@@ -24,7 +24,7 @@ function App() {
       <Table headers={['Name', 'Category', 'Developer', 'Creation Date']}>
         {gamesDummyData.map((row) => {
           return (
-            <tr key={row.id}> 
+            <tr key={row.id}>
               <td data-th='Name'>{row.name}</td>
               <td data-th='Category'>{row.category}</td>
               <td data-th='Developer'>{row.developer}</td>
