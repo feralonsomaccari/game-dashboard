@@ -1,0 +1,18 @@
+.button {
+  padding: 0 20px;
+  background-color: gray;
+  color: gold;
+  border: none;
+  font-weight: bold;
+  font-size: 18px;
+  height: 40px;
+  cursor: pointer;
+  flex-grow: 1;
+  border-radius: 3px;
+  max-height: 40px;
+  max-width: fit-content;
+}
+
+.disabled {
+  background-color: lightgray;
+}
