@@ -30,7 +30,7 @@ describe("<Table/>", () => {
             })}
         </Table>);
         const table = screen.queryAllByRole("row");
-        expect(table).toHaveLength(dummyTableData.length + 2); // Plus one from the head
+        expect(table).toHaveLength(dummyTableData.length + 1); // Plus one from the head
     });
 
     it("should render a Table component with an extra prop of aria-label", () => {

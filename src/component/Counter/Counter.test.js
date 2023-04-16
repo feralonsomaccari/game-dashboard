@@ -20,4 +20,4 @@ describe("<Counter/>", () => {
         const counter = screen.queryByTestId("icon");
         expect(counter).toHaveClass("users")
     });
-});
+})

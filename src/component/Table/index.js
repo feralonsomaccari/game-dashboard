@@ -1,12 +1,13 @@
 import styles from './Table.module.css'
+import Input from '../Input'
 
 const Table = ({ headers, children, actions = true, filterHandler, extraProps }) => {
 
     if (!headers) return null;
 
     return (
-        <>
-            <input placeholder='Filter...' onChange={filterHandler}/>
+        <div className={styles.tableContainer}>
+            <Input placeholder='Filter...' onChange={filterHandler} />
             <table className={styles.table} {...extraProps}>
                 <thead className={styles.tableHead}>
                     <tr>
@@ -18,7 +19,7 @@ const Table = ({ headers, children, actions = true, filterHandler, extraProps })
                     {children}
                 </tbody>
             </table>
-        </>
+        </div>
 
     )
 }
