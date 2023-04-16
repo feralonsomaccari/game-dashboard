@@ -1,13 +1,17 @@
 import styles from './Table.module.css'
 import Input from '../Input'
+import Button from '../Button'
 
-const Table = ({ headers, children, actions = true, filterHandler, extraProps }) => {
+const Table = ({ headers, children, actions = true, filterHandler, addElementHandler, extraProps }) => {
 
     if (!headers) return null;
 
     return (
         <div className={styles.tableContainer}>
-            <Input placeholder='Filter...' onChange={filterHandler} />
+            <div className={styles.toolsContainer}>
+                <Input placeholder='Filter...' onChange={filterHandler} />
+                <Button text="Add +" onClick={addElementHandler}/>
+            </div>
             <table className={styles.table} {...extraProps}>
                 <thead className={styles.tableHead}>
                     <tr>

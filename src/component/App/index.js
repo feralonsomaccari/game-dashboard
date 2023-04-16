@@ -22,14 +22,21 @@ function App() {
     setGamesData(filterRows(originalGamesData, event.target.value))
   }
 
+  const addNewUserHandler = () => {
+
+  }
+
+  const addNewGame = () => {
+
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.countersWrapper}>
         <Counter value={usersData.length} title="Registered users" type="users" />
         <Counter value={gamesData.length} title="Available games" type="games" />
       </div>
-      <Table headers={['Username', 'Email', 'Creation Date']} filterHandler={filterUsersHandler}>
-
+      <Table headers={['Username', 'Email', 'Creation Date']} filterHandler={filterUsersHandler} addElementHandler={addNewUserHandler}>
         {usersData.length ? usersData.map((row) => {
           return (
             <tr key={row.id}>
@@ -43,7 +50,7 @@ function App() {
             </tr>)
         }): <span>No data has been found</span>}
       </Table>
-      <Table headers={['Name', 'Category', 'Developer', 'Creation Date']} filterHandler={filterGamesHandler}>
+      <Table headers={['Name', 'Category', 'Developer', 'Creation Date']} filterHandler={filterGamesHandler} addElementHandler={addNewGame}>
         {gamesData.length ? gamesData.map((row) => {
           return (
             <tr key={row.id}>

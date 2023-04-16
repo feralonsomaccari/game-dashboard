@@ -104,6 +104,12 @@
   filter: invert(75%);
 }
 
+.toolsContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
 /* 320px — 480px: Mobile devices.
 481px — 768px: iPads, Tablets.
 769px — 1024px: Small screens, laptops.
