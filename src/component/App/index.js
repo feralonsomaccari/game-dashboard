@@ -8,8 +8,8 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.countersWrapper}>
-        <Counter value={usersDummyData.length} title="Registered users" />
-        <Counter value={gamesDummyData.length} title="Available games" />
+        <Counter value={usersDummyData.length} title="Registered users" type="users" />
+        <Counter value={gamesDummyData.length} title="Available games" type="games" />
       </div>
       <Table headers={['Username', 'Email', 'Creation Date']}>
         {usersDummyData.map((row) => {
