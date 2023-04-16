@@ -1,0 +1,46 @@
+@property --origin {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+.counterContainer {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: gray;
+  padding: 1rem;
+  justify-content: center;
+  color: #fff;
+  border-radius: 0 0 1rem 1rem;
+  border-bottom: 10px solid gold;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.counterNum {
+  animation: counter 2s forwards ease-in-out;
+  counter-set: num var(--origin);
+  font-size: 24px;
+  font-weight: bold;
+  --origin: 0;
+  --value: 0;
+}
+
+.counterNum::after {
+  content: counter(num);
+}
+
+@keyframes counter {
+  from {
+    --origin: 0;
+  }
+  to {
+    --origin: var(--value);
+  }
+}
