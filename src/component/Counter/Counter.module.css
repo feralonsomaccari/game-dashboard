@@ -13,9 +13,8 @@
   background: var(--color-primary);
   padding: 1rem;
   justify-content: center;
-  color: var(--color-text-primary);
   border-radius: 0 0 1rem 1rem;
-  border-bottom: 10px solid var(--color-secondary);
+  border-bottom: 2px solid var(--color-accent);
   text-align: center;
 }
 
@@ -25,7 +24,6 @@
   background-repeat: no-repeat;
   background-size: auto;
   text-align: center;
-  filter: invert(75%);
 }
 
 .users {

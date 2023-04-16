@@ -25,6 +25,7 @@
 
 .tableBody .tr {
   border-color: var(--color-primary);
+  border-bottom: 2px solid red;
 }
 
 .tableHead th {
@@ -41,16 +42,16 @@
   margin: 8px 16px;
   text-align: left;
 }
-
+/* 
 .tableHead th::before,
 .tableBody td::before {
-  color: var(--color-text-secondary);
-}
+  color: var(--color-text-accent);
+} */
 
 .tableBody td::before {
   content: attr(data-th) ": ";
   font-weight: bold;
-  width: calc(104rem / 16);
+  width: calc(80rem / 16);
   display: inline-block;
 }
 
@@ -123,6 +124,14 @@
   justify-content: space-between;
   gap: 20px;
   min-width: 300px;
+}
+
+.actionsContainer button {
+  margin-left: 15px;
+}
+
+.actionsContainer button:first-child {
+  margin: 0;
 }
 
 /* 320px — 480px: Mobile devices.

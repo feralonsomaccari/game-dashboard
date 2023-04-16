@@ -1,9 +1,19 @@
 :root {
-  --color-primary: gray;
-  --color-secondary: gold;
-  --color-text-primary: #fff;
-  --color-text-secondary: gold;
+  --color-bg-primary: #f1f5f9;
+  --color-primary: #ffffff;
+  --color-secondary: #0072C6;
+  --color-text-primary: #333333;
+  --color-accent: #00365c;
+  --color-text-secondary: #ffffff;
   --color-disabled: #d6cec5;
+
+  /* 
+Primary color: #0072C6 (dark blue)
+Secondary color: #55B948 (green)
+Accent color: #F2A900 (yellow/orange)
+Background color: #F5F5F5 (light grey)
+Text color: #333333 (dark grey)
+  */
 }
 
 body {
@@ -11,7 +21,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #faf8ef;
+  background-color: var(--color-bg-primary);
 }
 
 code {
