@@ -6,7 +6,7 @@
 }
 
 .countersWrapper {
-  width: 320px;
+  width: 300px;
   display: flex;
   justify-content: space-around;
   gap: 20px;

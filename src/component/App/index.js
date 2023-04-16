@@ -1,4 +1,5 @@
 import styles from "./App.module.css";
+import tableStyles from "../Table/Table.module.css";
 import Table from "../Table"
 import Counter from "../Counter"
 import usersDummyData from "../Table/usersDummyData.json"
@@ -18,6 +19,10 @@ function App() {
               <td data-th='Username'>{row.username}</td>
               <td data-th='Email'>{row.email}</td>
               <td data-th='Creation Date'>{row.created_at}</td>
+              <td data-th='Actions' id="action-header">
+                <button className={`${tableStyles.icon} ${tableStyles.edit}`}/>
+                <button className={`${tableStyles.icon} ${tableStyles.delete}`}/>
+              </td>
             </tr>)
         })}
       </Table>

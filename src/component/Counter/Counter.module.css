@@ -25,7 +25,7 @@
   background-repeat: no-repeat;
   background-size: auto;
   text-align: center;
-  filter: invert(42%) sepia(93%) saturate(100%) hue-rotate(1deg) brightness(1110%) contrast(73%);
+  filter: invert(75%);
 }
 
 .users {

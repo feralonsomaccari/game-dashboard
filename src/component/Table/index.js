@@ -1,6 +1,6 @@
 import styles from './Table.module.css'
 
-const Table = ({ headers, children, extraProps }) => {
+const Table = ({ headers, children, actions = true, extraProps }) => {
 
     if (!headers) return null;
 
@@ -9,6 +9,7 @@ const Table = ({ headers, children, extraProps }) => {
             <thead className={styles.tableHead}>
                 <tr>
                     {headers.map((header, index) => <th key={index} scope="col">{header}</th>)}
+                    {actions && <th id="action-header" scope="col">Action</th>}
                 </tr>
             </thead>
             <tbody className={styles.tableBody}>
