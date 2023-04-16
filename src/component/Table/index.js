@@ -1,12 +1,12 @@
 import styles from './Table.module.css'
 
-const Table = ({ headers, children }) => {
+const Table = ({ headers, children, extraProps }) => {
 
     return (
-        <table className={styles.table}>
+        <table className={styles.table} {...extraProps}>
             <thead className={styles.tableHead}>
                 <tr>
-                    {headers.map((header, index) => <th key={index}>{header}</th>)}
+                    {headers.map((header, index) => <th key={index} scope="col">{header}</th>)}
                 </tr>
             </thead>
             <tbody className={styles.tableBody}>
