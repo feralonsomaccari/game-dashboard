@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "name": "Super Mario Bros.",
+    "created_at": "1985-09-13",
+    "category": "Platformer",
+    "developer": "Nintendo"
+  },
+  {
+    "id": 2,
+    "name": "The Legend of Zelda",
+    "created_at": "1986-02-21",
+    "category": "Action-adventure",
+    "developer": "Nintendo"
+  },
+  {
+    "id": 3,
+    "name": "Final Fantasy VII",
+    "created_at": "1997-01-31",
+    "category": "Role-playing",
+    "developer": "Square"
+  },
+  {
+    "id": 4,
+    "name": "Half-Life 2",
+    "created_at": "2004-11-16",
+    "category": "First-person shooter",
+    "developer": "Valve"
+  },
+  {
+    "id": 5,
+    "name": "Portal",
+    "created_at": "2007-10-09",
+    "category": "Puzzle-platformer",
+    "developer": "Valve"
+  },
+  {
+    "id": 1,
+    "name": "Assassin's Creed Valhalla",
+    "created_at": "2020-11-10",
+    "category": "Action role-playing",
+    "developer": "Ubisoft Montreal"
+  },
+  {
+    "id": 2,
+    "name": "The Witcher 3: Wild Hunt",
+    "created_at": "2015-05-19",
+    "category": "Action role-playing",
+    "developer": "CD Projekt Red"
+  },
+  {
+    "id": 3,
+    "name": "Red Dead Redemption 2",
+    "created_at": "2018-10-26",
+    "category": "Action-adventure",
+    "developer": "Rockstar Games"
+  },
+  {
+    "id": 4,
+    "name": "Grand Theft Auto V",
+    "created_at": "2013-09-17",
+    "category": "Action-adventure",
+    "developer": "Rockstar North"
+  },
+  {
+    "id": 5,
+    "name": "Portal 2",
+    "created_at": "2011-04-19",
+    "category": "Puzzle-platformer",
+    "developer": "Valve"
+  },
+  {
+    "id": 6,
+    "name": "The Elder Scrolls V: Skyrim",
+    "created_at": "2011-11-11",
+    "category": "Action role-playing",
+    "developer": "Bethesda Game Studios"
+  },
+  {
+    "id": 7,
+    "name": "Uncharted 4: A Thief's End",
+    "created_at": "2016-05-10",
+    "category": "Action-adventure",
+    "developer": "Naughty Dog"
+  },
+  {
+    "id": 8,
+    "name": "Hades",
+    "created_at": "2020-09-17",
+    "category": "Action role-playing",
+    "developer": "Supergiant Games"
+  },
+  {
+    "id": 9,
+    "name": "Bioshock Infinite",
+    "created_at": "2013-03-26",
+    "category": "First-person shooter",
+    "developer": "Irrational Games"
+  },
+  {
+    "id": 10,
+    "name": "Death Stranding",
+    "created_at": "2019-11-08",
+    "category": "Action",
+    "developer": "Kojima Productions"
+  }
+]

@@ -1,6 +1,7 @@
 .table {
-  margin: 16px 0;
-  min-width: 300px;
+  margin: 16px 16px;
+  min-width: 280px;
+  max-width: 320px;
   background: gray;
   color: #fff;
   border-radius: calc(4rem / 16);
@@ -51,6 +52,7 @@
 @media (min-width: 480px) {
   .table {
     padding: calc(8rem / 16);
+    width: 300px;
   }
 
   .tableHead th,

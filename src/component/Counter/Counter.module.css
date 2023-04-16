@@ -44,3 +44,17 @@
     --origin: var(--value);
   }
 }
+
+@media (min-width: 480px) {
+  .counterContainer {
+    width: 200px;
+    height: 200px;
+  }
+  .title {
+    font-size: 16px;
+  }
+
+  .counterNum {
+    font-size: 40px;
+  }
+}
