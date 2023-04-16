@@ -10,7 +10,7 @@ const Table = ({ headers, children, actions = true, filterHandler, addElementHan
         <div className={styles.tableContainer}>
             <div className={styles.toolsContainer}>
                 <Input placeholder='Filter...' onChange={filterHandler} />
-                <Button text="Add +" onClick={addElementHandler}/>
+                <Button text="Add +" clickHandler={addElementHandler}/>
             </div>
             <table className={styles.table} {...extraProps}>
                 <thead className={styles.tableHead}>
