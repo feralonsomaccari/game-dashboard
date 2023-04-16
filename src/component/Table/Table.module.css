@@ -1,20 +1,26 @@
 .tableContainer {
   margin: 20px 20px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  width: 100%;
+  min-width: 300px;
+  align-items: center;
 }
 
 .table {
   margin: 16px 0;
-  min-width: 280px;
-  max-width: 320px;
-  min-height: 50px;
+  width: 100%;
+  max-width: 300px;
+  min-width: 300px;
+  min-height: 320px;
   background: var(--color-primary);
   color: var(--color-text-primary);
   border-radius: calc(4rem / 16);
   overflow: hidden;
   text-align: center;
+  font-size: 14px;
 }
 
 .tableBody .tr {
@@ -105,9 +111,18 @@
 }
 
 .toolsContainer {
+  max-width: 300px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   gap: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 300px;
 }
 
 /* 320px — 480px: Mobile devices.

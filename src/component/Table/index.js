@@ -2,7 +2,7 @@ import styles from './Table.module.css'
 import Input from '../Input'
 import Button from '../Button'
 
-const Table = ({ headers, children, actions = true, filterHandler, addElementHandler, extraProps }) => {
+const Table = ({ headers, children, actions = true, filterHandler, addElementHandler, nextPageHandler, prevPageHandler, page = 0, range = 0, extraProps }) => {
 
     if (!headers) return null;
 
@@ -10,7 +10,7 @@ const Table = ({ headers, children, actions = true, filterHandler, addElementHan
         <div className={styles.tableContainer}>
             <div className={styles.toolsContainer}>
                 <Input placeholder='Filter...' onChange={filterHandler} />
-                <Button text="Add +" clickHandler={addElementHandler}/>
+                <Button text="Add +" clickHandler={addElementHandler} />
             </div>
             <table className={styles.table} {...extraProps}>
                 <thead className={styles.tableHead}>
@@ -23,6 +23,14 @@ const Table = ({ headers, children, actions = true, filterHandler, addElementHan
                     {children}
                 </tbody>
             </table>
+
+            {range > 0 && (
+                <div className={styles.footer}>
+                    <Button text="Prev" clickHandler={prevPageHandler} />
+                    <span>Page {page} of {range}</span>
+                    <Button text="Next" clickHandler={nextPageHandler} />
+                </div>
+            )}
         </div>
 
     )
