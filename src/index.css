@@ -1,4 +1,9 @@
 :root {
+  --color-primary: gray;
+  --color-secondary: gold;
+  --color-text-primary: #fff;
+  --color-text-secondary: gold;
+  --color-disabled: #d6cec5;
 }
 
 body {

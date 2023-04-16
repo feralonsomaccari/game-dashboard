@@ -10,22 +10,20 @@
   min-width: 280px;
   max-width: 320px;
   min-height: 50px;
-  background: gray;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-text-primary);
   border-radius: calc(4rem / 16);
   overflow: hidden;
   text-align: center;
 }
 
 .tableBody .tr {
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-color: gray;
+  border-color: var(--color-primary);
 }
 
 .tableHead th {
   display: none;
-  color: gold;
+  color: var(--color-text-secondary);
 }
 
 .tableBody td {
@@ -40,7 +38,7 @@
 
 .tableHead th::before,
 .tableBody td::before {
-  color: gold;
+  color: var(--color-text-secondary);
 }
 
 .tableBody td::before {
