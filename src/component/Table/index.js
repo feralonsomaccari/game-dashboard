@@ -2,6 +2,8 @@ import styles from './Table.module.css'
 
 const Table = ({ headers, children, extraProps }) => {
 
+    if (!headers) return null;
+
     return (
         <table className={styles.table} {...extraProps}>
             <thead className={styles.tableHead}>
