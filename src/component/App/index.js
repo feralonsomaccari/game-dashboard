@@ -36,18 +36,16 @@ const dummyTableData = [
 
 function App() {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Table headers={['Username', 'Email', 'Creation Date']}>
-
         {dummyTableData.map((row) => {
           return (
             <tr key={row.id}>
-              <td>{row.username}</td>
-              <td>{row.email}</td>
-              <td>{row.created_at}</td>
+              <td data-th='Username'>{row.username}</td>
+              <td data-th='Email'>{row.email}</td>
+              <td data-th='Creation Date'>{row.created_at}</td>
             </tr>)
         })}
-
       </Table>
     </div>
   );

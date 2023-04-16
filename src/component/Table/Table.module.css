@@ -1,0 +1,81 @@
+.table {
+  margin: 16px 0;
+  min-width: 300px;
+  background: gray;
+  color: #fff;
+  border-radius: calc(4rem / 16);
+  overflow: hidden;
+}
+
+.tableBody .tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-color: gray;
+}
+
+.tableHead th {
+  display: none;
+  color: gold;
+}
+
+.tableBody td {
+  display: block;
+}
+
+.tableHead th,
+.tableBody td {
+  margin: 8px 16px;
+  text-align: left;
+}
+
+.tableHead th::before,
+.tableBody td::before {
+  color: gold;
+}
+
+.tableBody td::before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: calc(104rem / 16);
+  display: inline-block;
+}
+
+.tableBody td:first-child {
+  padding-top: calc(8rem / 16);
+}
+
+.tableBody td:last-child {
+  padding-bottom: calc(8rem / 16);
+}
+
+@media (min-width: 480px) {
+  .table {
+    padding: calc(8rem / 16);
+  }
+
+  .tableHead th,
+  .tableBody td {
+    display: table-cell;
+    padding: 4px 8px;
+  }
+
+  .tableHead th:first-child,
+  .tableBody td:first-child {
+    padding-left: 0;
+  }
+
+  .tableHead th:last-child,
+  .tableBody td:last-child {
+    padding-right: 0;
+  }
+
+  .tableBody td::before {
+    display: none;
+  }
+}
+
+/* 320px — 480px: Mobile devices.
+481px — 768px: iPads, Tablets.
+769px — 1024px: Small screens, laptops.
+1025px — 1200px: Desktops, large screens.
+1201px and more — Extra large screens, TV. */

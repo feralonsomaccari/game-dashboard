@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import styles from './Table.module.css'
 
 const Table = ({ headers, children }) => {
 
     return (
-        <table>
-            <thead>
+        <table className={styles.table}>
+            <thead className={styles.tableHead}>
                 <tr>
                     {headers.map((header, index) => <th key={index}>{header}</th>)}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
                 {children}
             </tbody>
         </table>
