@@ -1,0 +1,13 @@
+.cardContainer {
+  padding: 20px 20px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.cardTitle {
+  color: var(--color-text-primary)
+}
+
+.cardContentContainer {
+  padding: 20px 0;
+}
