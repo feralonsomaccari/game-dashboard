@@ -1,9 +1,13 @@
 .wrapper {
-  margin: 0 auto;
+  margin: 20px auto;
   max-width: 300px;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.title{
+  margin: 0;
 }
 
 .countersWrapper {

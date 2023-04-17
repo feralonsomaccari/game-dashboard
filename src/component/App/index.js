@@ -59,6 +59,8 @@ function App() {
         </Modal>
       )}
       <div className={styles.wrapper}>
+        <h1 className={styles.title}>Hi! Welcome to Game Dashboard</h1>
+        <p>Here you can have a quick general look at your users and games.</p>
         <div className={styles.countersWrapper}>
           <Counter value={originalUsersData.length} title="Registered users" type="users" />
           <Counter value={originalGamesData.length} title="Available games" type="games" />
