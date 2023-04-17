@@ -26,9 +26,9 @@ const Table = ({ headers, children, actions = true, filterHandler, addElementHan
 
             {range > 0 && (
                 <div className={styles.footer}>
-                    <Button text="Prev" clickHandler={prevPageHandler} />
+                    <Button text="Prev" clickHandler={prevPageHandler} disabled={page <= 1}/>
                     <span>Page {page} of {range}</span>
-                    <Button text="Next" clickHandler={nextPageHandler} />
+                    <Button text="Next" clickHandler={nextPageHandler} disabled={page >= range} />
                 </div>
             )}
         </div>

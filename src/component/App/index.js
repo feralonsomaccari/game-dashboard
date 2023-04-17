@@ -21,6 +21,8 @@ function App() {
   //Games
   const [originalGamesData] = useState([...gamesDummyData]);
   const [gamesData, setGamesData] = useState([...gamesDummyData]);
+  const [gamesPage, setGamesPage] = useState(1);
+  const [gamesPaginationData, updateGamesPaginationData, gamesRange] = useTable(gamesData, gamesPage, 2);
 
 
   useEffect(() => {
@@ -34,14 +36,6 @@ function App() {
     setGamesData(filterRows(originalGamesData, event.target.value))
   }
 
-  const addNewUserHandler = () => {
-    setIsModalShown(true);
-  }
-
-  const addNewGame = () => {
-
-  }
-
   const nextPageUsersHandler = () => {
     if (usersPage >= usersRange.length) return;
     setUsersPage(usersPage + 1);
@@ -50,6 +44,12 @@ function App() {
     if (usersPage <= 1) return;
     setUsersPage(usersPage - 1);
   }
+
+  const addNewUserHandler = () => {
+    setIsModalShown(true);
+  }
+  const addNewGame = () => { }
+
 
   return (
     <>
