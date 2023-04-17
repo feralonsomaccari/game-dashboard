@@ -61,6 +61,7 @@ function App() {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Hi! Welcome to Game Dashboard</h1>
         <p>Here you can have a quick general look at your users and games.</p>
+        
         <div className={styles.countersWrapper}>
           <Counter value={originalUsersData.length} title="Registered users" type="users" />
           <Counter value={originalGamesData.length} title="Available games" type="games" />
@@ -80,10 +81,10 @@ function App() {
                   <td data-th='Username' className={tableStyles.username}>{row.username}</td>
                   <td data-th='Email'>{row.email}</td>
                   <td data-th='Created At'>{row.created_at}</td>
-                  <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
+                  {/* <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
                     <button className={`${tableStyles.icon} ${tableStyles.edit}`} />
                     <button className={`${tableStyles.icon} ${tableStyles.delete}`} />
-                  </td>
+                  </td> */}
                 </tr>)
             }) : <tr><td className={tableStyles.noData}>{NO_DATA}</td></tr>}
           </Table>
