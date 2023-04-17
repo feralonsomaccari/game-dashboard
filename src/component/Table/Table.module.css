@@ -48,11 +48,15 @@
   color: var(--color-text-accent);
 } */
 
-.tableBody td::before {
+.tableBody td:not(.noData)::before {
   content: attr(data-th) ": ";
   font-weight: bold;
   width: calc(80rem / 16);
   display: inline-block;
+}
+
+.tableBody td.noData {
+  text-align: center;
 }
 
 .tableBody td:first-child {

@@ -1,70 +1,67 @@
 [
   {
-    "uuid": "98e71d94-9db1-4916-94e6-3b6e3d6ddc98",
+    "id": "98e71d94-9db1-4916-94e6-3b6e3d6ddc98",
     "name": "Super Mario Bros.",
     "created_at": "1985-09-13",
     "category": "Platformer",
     "developer": "Nintendo"
   },
   {
-    "uuid": "176f92eb-05e1-469d-9b46-86da1da24e7f",
+    "id": "176f92eb-05e1-469d-9b46-86da1da24e7f",
     "name": "The Legend of Zelda",
     "created_at": "1986-02-21",
     "category": "Action-adventure",
     "developer": "Nintendo"
   },
   {
-    "uuid": "f1a6d7ea-cb2e-4c78-9d62-fd1c12f480bc",
+    "id": "f1a6d7ea-cb2e-4c78-9d62-fd1c12f480bc",
     "name": "Final Fantasy VII",
     "created_at": "1997-01-31",
     "category": "Role-playing",
     "developer": "Square"
   },
   {
-    "uuid": "ff882e6c-93a9-4436-b7c6-3b6b3be6fde3",
+    "id": "ff882e6c-93a9-4436-b7c6-3b6b3be6fde3",
     "name": "Half-Life 2",
     "created_at": "2004-11-16",
     "category": "First-person shooter",
     "developer": "Valve"
   },
   {
-    "uuid": "a0c45e88-07af-4280-9716-e7fca8f8f3c3",
+    "id": "a0c45e88-07af-4280-9716-e7fca8f8f3c3",
     "name": "Portal",
     "created_at": "2007-10-09",
     "category": "Puzzle-platformer",
     "developer": "Valve"
   },
   {
-    "uuid": "ae8e2d38-0e52-44c9-9f8a-5d017cd30e1a",
+    "id": "ae8e2d38-0e52-44c9-9f8a-5d017cd30e1a",
     "name": "Assassin's Creed Valhalla",
     "created_at": "2020-11-10",
     "category": "Action role-playing",
     "developer": "Ubisoft Montreal"
   },
   {
-    "uuid": "c94d7d56-4ab3-4cf4-8f19-7e0155792e2c",
+    "id": "c94d7d56-4ab3-4cf4-8f19-7e0155792e2c",
     "name": "The Witcher 3: Wild Hunt",
     "created_at": "2015-05-19",
     "category": "Action role-playing",
     "developer": "CD Projekt Red"
   },
   {
-    "uuid": "6d4007e2-2e9a-49b2-8e45-d554f19254eb",
+    "id": "6d4007e2-2e9a-49b2-8e45-d554f19254eb",
     "name": "Red Dead Redemption 2",
     "created_at": "2018-10-26",
     "category": "Action-adventure",
     "developer": "Rockstar Games"
   },
   {
-    "uuid": "e5da8d33-778f-4812-99c1-5de8d5a5a3c5",
+    "id": "e5da8d33-778f-4812-99c1-5de8d5a5a3c5",
     "name": "Grand Theft Auto V",
     "created_at": "2013-09-17",
     "category": "Action-adventure",
     "developer": "Rockstar North"
   },
-
-
-
   {
     "id": "e5da8d33-778f-4812-99c1-5de8d5a5a3c6",
     "name": "Portal 2",

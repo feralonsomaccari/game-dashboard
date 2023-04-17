@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./App.module.css";
 import tableStyles from "../Table/Table.module.css";
 import Table from "../Table"
@@ -13,12 +13,19 @@ const NO_DATA = "No data has been found"
 
 function App() {
   const [isModalShown, setIsModalShown] = useState(false);
+  //Users
   const [originalUsersData] = useState([...usersDummyData]);
-  const [originalGamesData] = useState([...gamesDummyData]);
   const [usersData, setUsersData] = useState([...usersDummyData]);
+  const [usersPage, setUsersPage] = useState(1);
+  const [usersPaginationData, updateUsersPaginationData, usersRange] = useTable(usersData, usersPage, 2);
+  //Games
+  const [originalGamesData] = useState([...gamesDummyData]);
   const [gamesData, setGamesData] = useState([...gamesDummyData]);
-  const [usersDataPage, setUsersDataPage] = useState(1);
-  const { slice, range } = useTable(usersData, usersDataPage, 2);
+
+
+  useEffect(() => {
+    updateUsersPaginationData(usersData, 2)
+  }, [usersData])
 
   const filterUsersHandler = (event) => {
     setUsersData(filterRows(originalUsersData, event.target.value))
@@ -36,12 +43,12 @@ function App() {
   }
 
   const nextPageUsersHandler = () => {
-    if (usersDataPage >= range.length) return;
-    setUsersDataPage(usersDataPage + 1);
+    if (usersPage >= usersRange.length) return;
+    setUsersPage(usersPage + 1);
   }
   const prevPageUsersHandler = () => {
-    if (usersDataPage <= 1) return;
-    setUsersDataPage(usersDataPage - 1);
+    if (usersPage <= 1) return;
+    setUsersPage(usersPage - 1);
   }
 
   return (
@@ -52,18 +59,18 @@ function App() {
       )}
       <div className={styles.wrapper}>
         <div className={styles.countersWrapper}>
-          <Counter value={usersData.length} title="Registered users" type="users" />
-          <Counter value={gamesData.length} title="Available games" type="games" />
+          <Counter value={originalUsersData.length} title="Registered users" type="users" />
+          <Counter value={originalGamesData.length} title="Available games" type="games" />
         </div>
         <Table headers={['Username', 'Email', 'Created At']}
           filterHandler={filterUsersHandler}
           addElementHandler={addNewUserHandler}
           nextPageHandler={nextPageUsersHandler}
           prevPageHandler={prevPageUsersHandler}
-          page={usersDataPage}
-          range={range.length}
-          >
-          {slice.length ? slice.map((row) => {
+          page={usersPage}
+          range={usersRange.length}
+        >
+          {usersPaginationData.length ? usersPaginationData.map((row) => {
             return (
               <tr key={row.id}>
                 <td data-th='Username'>{row.username}</td>
@@ -74,7 +81,7 @@ function App() {
                   <button className={`${tableStyles.icon} ${tableStyles.delete}`} />
                 </td>
               </tr>)
-          }) : <span>{NO_DATA}</span>}
+          }) : <tr><td className={tableStyles.noData}>{NO_DATA}</td></tr>}
         </Table>
         <Table headers={['Name', 'Category', 'Developer', 'Created At']} filterHandler={filterGamesHandler} addElementHandler={addNewGame}>
           {gamesData.length ? gamesData.map((row) => {
@@ -85,7 +92,7 @@ function App() {
                 <td data-th='Developer'>{row.developer}</td>
                 <td data-th='Created At'>{row.created_at}</td>
               </tr>)
-          }) : <span>{NO_DATA}</span>}
+          }) : <tr><td className={tableStyles.noData}>{NO_DATA}</td></tr>}
         </Table>
       </div>
     </>
