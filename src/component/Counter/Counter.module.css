@@ -5,16 +5,12 @@
 }
 
 .counterContainer {
-  width: 100px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: var(--color-primary);
-  padding: 1rem;
-  justify-content: center;
-  border-radius: 0 0 1rem 1rem;
-  border-bottom: 2px solid var(--color-accent);
   text-align: center;
 }
 

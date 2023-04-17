@@ -1,8 +1,8 @@
 :root {
   --color-bg-primary: #f1f5f9;
   --color-primary: #ffffff;
-  --color-secondary: #0072C6;
-  --color-text-primary: #333333;
+  --color-secondary: #525ce4;
+  --color-text-primary: #001e20;
   --color-accent: #00365c;
   --color-text-secondary: #ffffff;
   --color-disabled: #d6cec5;
@@ -18,10 +18,10 @@ Text color: #333333 (dark grey)
 
 body {
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-bg-primary);
+  background-color: #edeef9;
 }
 
 code {
