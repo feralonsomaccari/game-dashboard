@@ -10,6 +10,7 @@ const calculateRange = (data, rowsPerPage) => {
 };
 
 const sliceData = (data, page, rowsPerPage) => {
+    if (!data || !data.length) return [];
     return data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 };
 
@@ -31,7 +32,7 @@ const useTable = (data, page, rowsPerPage) => {
 
         const slice = sliceData(data, page, rowsPerPage);
         setSlice([...slice]);
-    }, [data, setTableRange, page, setSlice]);
+    }, [page, setTableRange, setSlice]);
 
     return [slice, updatePaginationData, tableRange];
 };
