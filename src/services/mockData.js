@@ -9,7 +9,7 @@ const handlers = [
     }),
     // Handles a Games request
     rest.get('/api/game', (req, res, ctx) => {
-        return res(ctx.json(gamesDummyData));
+        return res(ctx.delay(2000), ctx.json(gamesDummyData));
     })
 ];
 

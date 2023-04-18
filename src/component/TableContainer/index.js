@@ -7,6 +7,7 @@ import tableStyles from "../Table/Table.module.css";
 import Table from "../Table"
 import Input from '../Input'
 import Button from '../Button'
+import Loader from '../Loader'
 
 const NO_DATA = "No data has been found"
 
@@ -65,35 +66,40 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
     }
 
     return (
-        <>
-            <Card title={title}>
-                <div className={styles.tableContainer} ref={ref}>
-                    <div className={styles.toolsContainer}>
-                        <Input placeholder='Filter...' onChangeHandler={filterHandler} />
-                        <Button text="Add +" clickHandler={addElementHandler} />
-                    </div>
-                    <Table headers={headers}
-                        filterHandler={filterHandler}
-                        nextPageHandler={nextPageHandler}
-                        prevPageHandler={prevPageHandler}
-                        sortHandler={sortByColumn}
-                    >
-                        {paginationData.length
-                            ? renderTableContent(paginationData)
-                            : <tr><td className={tableStyles.noData} colSpan={Object.keys(headers).length}>{NO_DATA}</td></tr>}
-                    </Table>
+        <Card title={title}>
+            {!originalData ? (
+                <div className={styles.loaderContainer}>
+                    <Loader />
                 </div>
-                {range.length > 0 && (
-                    <div className={styles.footer}>
-                        <Button text="Prev" clickHandler={prevPageHandler} disabled={page <= 1} />
-                        <span>Page {page} of {range.length}</span>
-                        <Button text="Next" clickHandler={nextPageHandler} disabled={page >= range.length} />
+            ) : (
+                <>
+                    <div className={styles.tableContainer} ref={ref}>
+                        <div className={styles.toolsContainer}>
+                            <Input placeholder='Filter...' onChangeHandler={filterHandler} />
+                            <Button text="Add +" clickHandler={addElementHandler} />
+                        </div>
+                        <Table headers={headers}
+                            filterHandler={filterHandler}
+                            nextPageHandler={nextPageHandler}
+                            prevPageHandler={prevPageHandler}
+                            sortHandler={sortByColumn}
+                        >
+                            {paginationData.length
+                                ? renderTableContent(paginationData)
+                                : <tr><td className={tableStyles.noData} colSpan={Object.keys(headers).length}>{NO_DATA}</td></tr>}
+                        </Table>
                     </div>
-                )}
-            </Card>
-        </>
+                    {range.length > 0 && (
+                        <div className={styles.footer}>
+                            <Button text="Prev" clickHandler={prevPageHandler} disabled={page <= 1} />
+                            <span>Page {page} of {range.length}</span>
+                            <Button text="Next" clickHandler={nextPageHandler} disabled={page >= range.length} />
+                        </div>
+                    )}
+                </>
+            )}
+        </Card>
     )
 }
 
 export default TableContainer
-

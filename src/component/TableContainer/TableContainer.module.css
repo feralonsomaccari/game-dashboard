@@ -1,3 +1,11 @@
+.loaderContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 130px;
+}
+
 .tableContainer {
   display: flex;
   flex-direction: column;
@@ -5,6 +13,7 @@
   width: 100%;
   min-width: 260px;
   max-width: 260px;
+  min-height: 130px;
   align-items: center;
 }
 

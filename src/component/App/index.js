@@ -55,11 +55,11 @@ function App() {
         </div>
         {/* Counters */}
         <div className={styles.countersWrapper}>
-          <Counter value={originalUsersData?.data?.length} title="Registered Users" type="users"/>
+          <Counter value={originalUsersData?.data?.length} title="Registered Users" type="users" />
           <Counter value={originalGamesData?.data?.length} title="Published Games" type="games" />
         </div>
         {/* Tables */}
-        {/* <TableContainer
+        <TableContainer
           title={"Registered Users"}
           data={usersData}
           originalData={originalUsersData.data}
@@ -79,7 +79,7 @@ function App() {
           addElementHandler={addNewGamesHandler}
           tableHeight={gamesTableHeight}
           setTableHeight={setGamesTableHeight}
-        /> */}
+        />
       </div>
     </>
 
