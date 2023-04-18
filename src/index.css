@@ -6,14 +6,7 @@
   --color-accent: #00365c;
   --color-text-secondary: #ffffff;
   --color-disabled: #edeef9;
-
-  /* 
-Primary color: #0072C6 (dark blue)
-Secondary color: #55B948 (green)
-Accent color: #F2A900 (yellow/orange)
-Background color: #F5F5F5 (light grey)
-Text color: #333333 (dark grey)
-  */
+  --color-loader: #d4d4d4;
 }
 
 body {
