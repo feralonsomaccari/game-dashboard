@@ -17,13 +17,13 @@ function App() {
   const [usersTableHeight, setUsersTableHeight] = useState(0);
   const [gamesTableHeight, setGamesTableHeight] = useState(0);
   //Users
-  const [originalUsersData] = useState([...usersDummyData]);
-  const [usersData, setUsersData] = useState([...usersDummyData]);
+  const [originalUsersData] = useState({ ...usersDummyData });
+  const [usersData, setUsersData] = useState([...usersDummyData.data]);
   const [usersPage, setUsersPage] = useState(1);
   const [usersPaginationData, updateUsersPaginationData, usersRange] = useTable(usersData, usersPage, 4);
   //Games
-  const [originalGamesData] = useState([...gamesDummyData]);
-  const [gamesData, setGamesData] = useState([...gamesDummyData]);
+  const [originalGamesData] = useState({ ...gamesDummyData });
+  const [gamesData, setGamesData] = useState([...gamesDummyData.data]);
   const [gamesPage, setGamesPage] = useState(1);
   const [gamesPaginationData, updateGamesPaginationData, gamesRange] = useTable(gamesData, gamesPage, 4);
 
@@ -36,10 +36,10 @@ function App() {
   }, [gamesData])
 
   const filterUsersHandler = (event) => {
-    setUsersData(filterRows(originalUsersData, event.target.value))
+    setUsersData(filterRows(originalUsersData.data, event.target.value))
   }
   const filterGamesHandler = (event) => {
-    setGamesData(filterRows(originalGamesData, event.target.value))
+    setGamesData(filterRows(originalGamesData.data, event.target.value))
   }
 
   const nextPageUsersHandler = useCallback(() => {
@@ -66,6 +66,17 @@ function App() {
   }
   const addNewGame = () => { }
 
+  const sortUsersByColumn = (column) => {
+    const sortedUsers = structuredClone(usersData);
+    sortedUsers.sort((a, b) => a[column].localeCompare(b[column]))
+    setUsersData(sortedUsers)
+  }
+
+  const sortGamesByColumn = (column) => {
+    const sortedGames = structuredClone(gamesData);
+    sortedGames.sort((a, b) => a[column].localeCompare(b[column]))
+    setGamesData(sortedGames)
+  }
 
   return (
     <>
@@ -80,12 +91,12 @@ function App() {
         </div>
 
         <div className={styles.countersWrapper}>
-          <Counter value={originalUsersData.length} title="Registered Users" type="users" />
-          <Counter value={originalGamesData.length} title="Published Games" type="games" />
+          <Counter value={originalUsersData.data.length} title="Registered Users" type="users" />
+          <Counter value={originalGamesData.data.length} title="Published Games" type="games" />
         </div>
 
         <Card title="Registered Users">
-          <Table headers={['Username', 'Email', 'Created At']}
+          <Table headers={originalUsersData.headers}
             filterHandler={filterUsersHandler}
             addElementHandler={addNewUserHandler}
             nextPageHandler={nextPageUsersHandler}
@@ -94,7 +105,8 @@ function App() {
             range={usersRange.length}
             tableHeight={usersTableHeight}
             setTableHeight={setUsersTableHeight}
-            >
+            sortHandler={sortUsersByColumn}
+          >
             {usersPaginationData.length ? usersPaginationData.map((row) => {
               return (
                 <tr key={row.id}>
@@ -111,7 +123,7 @@ function App() {
         </Card>
 
         <Card title="Published Games">
-          <Table headers={['Name', 'Category', 'Developer', 'Created At']}
+          <Table headers={originalGamesData.headers}
             filterHandler={filterGamesHandler}
             addElementHandler={addNewGame}
             nextPageHandler={nextPageGamesHandler}
@@ -120,7 +132,8 @@ function App() {
             range={gamesRange.length}
             tableHeight={gamesTableHeight}
             setTableHeight={setGamesTableHeight}
-            >
+            sortHandler={sortGamesByColumn}
+          >
             {gamesPaginationData.length ? gamesPaginationData.map((row) => {
               return (
                 <tr key={row.id}>

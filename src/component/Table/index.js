@@ -3,7 +3,7 @@ import styles from './Table.module.css'
 import Input from '../Input'
 import Button from '../Button'
 
-const Table = ({ headers, children, filterHandler, addElementHandler, nextPageHandler, prevPageHandler, page = 0, range = 0, tableHeight, setTableHeight, extraProps, }) => {
+const Table = ({ headers, children, filterHandler, addElementHandler, nextPageHandler, prevPageHandler, page = 0, range = 0, tableHeight, setTableHeight, sortHandler, extraProps, }) => {
     
     const ref = useRef()
 
@@ -26,7 +26,7 @@ const Table = ({ headers, children, filterHandler, addElementHandler, nextPageHa
                 <table className={styles.table} {...extraProps} border="0" cellSpacing="0" cellPadding="0" >
                     <thead className={styles.tableHead}>
                         <tr>
-                            {headers.map((header, index) => <th key={index} scope="col">{header}</th>)}
+                            {Object.keys(headers).map((header, index) => <th key={index} scope="col" onClick={() => sortHandler(header)}>{headers[header]}</th>)}
                         </tr>
                     </thead>
                     <tbody className={styles.tableBody}>
