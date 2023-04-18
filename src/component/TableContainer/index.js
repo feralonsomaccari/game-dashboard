@@ -10,7 +10,7 @@ import Button from '../Button'
 
 const NO_DATA = "No data has been found"
 
-const TableContainer = ({ data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight }) => {
+const TableContainer = ({ title, data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight }) => {
 
     const [page, setPage] = useState(1);
     const [paginationData, updatePaginationData, range] = useTable(data, page, 4);
@@ -66,7 +66,7 @@ const TableContainer = ({ data, originalData, headers, setData, addElementHandle
 
     return (
         <>
-            <Card title="Registered Users">
+            <Card title={title}>
                 <div className={styles.tableContainer} ref={ref}>
                     <div className={styles.toolsContainer}>
                         <Input placeholder='Filter...' onChangeHandler={filterHandler} />

@@ -6,10 +6,15 @@ import TableContainer from "../TableContainer"
 
 function App() {
   const [isModalShown, setIsModalShown] = useState(false);
-  //Users
+  // Users
   const [originalUsersData, setOriginalUsersData] = useState({});
   const [usersData, setUsersData] = useState([]);
   const [usersTableHeight, setUsersTableHeight] = useState(0);
+  // Games
+  const [originalGamesData, setOriginalGamesData] = useState({});
+  const [gamesData, setGamesData] = useState([]);
+  const [gamesTableHeight, setGamesTableHeight] = useState(0);
+
 
   useEffect(() => {
     fetch('/api/user')
@@ -18,9 +23,20 @@ function App() {
         setOriginalUsersData(data)
         setUsersData(data.data)
       })
+
+    fetch('/api/game')
+      .then(data => data.json())
+      .then(data => {
+        setOriginalGamesData(data)
+        setGamesData(data.data)
+      })
   }, [])
 
   const addNewUserHandler = () => {
+    setIsModalShown(true);
+  }
+
+  const addNewGamesHandler = () => {
     setIsModalShown(true);
   }
 
@@ -42,10 +58,11 @@ function App() {
         {/* Counters */}
         <div className={styles.countersWrapper}>
           <Counter value={originalUsersData.data.length} title="Registered Users" type="users" />
-          {/* <Counter value={originalGamesData.data.length} title="Published Games" type="games" /> */}
+          <Counter value={originalGamesData.data.length} title="Published Games" type="games" />
         </div>
         {/* Tables */}
         <TableContainer
+          title={"Registered Users"}
           data={usersData}
           originalData={originalUsersData.data}
           headers={originalUsersData.headers}
@@ -54,6 +71,17 @@ function App() {
           tableHeight={usersTableHeight}
           setTableHeight={setUsersTableHeight}
         />
+
+        <TableContainer
+          title={"Published Games"}
+          data={gamesData}
+          originalData={originalGamesData.data}
+          headers={originalGamesData.headers}
+          setData={setGamesData}
+          addElementHandler={addNewGamesHandler}
+          tableHeight={gamesTableHeight}
+          setTableHeight={setGamesTableHeight}
+        />
       </div>
     </>
 
@@ -61,28 +89,3 @@ function App() {
 }
 
 export default App;
-
-
-{/* <Card title="Published Games">
-          <Table headers={originalGamesData.headers}
-            filterHandler={filterGamesHandler}
-            addElementHandler={addNewGame}
-            nextPageHandler={nextPageGamesHandler}
-            prevPageHandler={prevPageGamesHandler}
-            page={gamesPage}
-            range={gamesRange.length}
-            tableHeight={gamesTableHeight}
-            setTableHeight={setGamesTableHeight}
-            sortHandler={sortGamesByColumn}
-          >
-            {gamesPaginationData.length ? gamesPaginationData.map((row) => {
-              return (
-                <tr key={row.id}>
-                  <td data-th='Name'>{row.name}</td>
-                  <td data-th='Category'>{row.category}</td>
-                  <td data-th='Developer'>{row.developer}</td>
-                  <td data-th='Created At'>{row.created_at}</td>
-                </tr>)
-            }) : <tr><td className={tableStyles.noData}>{NO_DATA}</td></tr>}
-          </Table>
-        </Card> */}
