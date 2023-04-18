@@ -1,7 +1,7 @@
-import styles from './Loading.module.css'
+import styles from './Loader.module.css'
 
-const Loading = () => {
+const Loader = () => {
     return <span data-testid="loader" className={styles.loader} />
 }
 
-export default Loading
+export default Loader
