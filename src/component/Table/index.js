@@ -11,7 +11,7 @@ const Table = ({ headers, children, filterHandler, addElementHandler, nextPageHa
     useLayoutEffect(() => {
         if (!children || !children.length) return;
         if (tableHeight === 0) return setTableHeight(ref.current.clientHeight)
-        ref.current.style.height = `${tableHeight}px`
+        ref.current.style.minHeight = `${tableHeight}px`
     }, [children.length])
 
     if (!headers) return null;
@@ -23,7 +23,7 @@ const Table = ({ headers, children, filterHandler, addElementHandler, nextPageHa
                     <Input placeholder='Filter...' onChangeHandler={filterHandler} />
                     <Button text="Add +" clickHandler={addElementHandler} />
                 </div>
-                <table className={styles.table} {...extraProps} border="0" cellSpacing="0" cellPadding="0">
+                <table className={styles.table} {...extraProps} border="0" cellSpacing="0" cellPadding="0" >
                     <thead className={styles.tableHead}>
                         <tr>
                             {headers.map((header, index) => <th key={index} scope="col">{header}</th>)}

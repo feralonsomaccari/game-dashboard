@@ -14,7 +14,8 @@ const NO_DATA = "No data has been found"
 
 function App() {
   const [isModalShown, setIsModalShown] = useState(false);
-  const [tableHeight, setTableHeight] = useState(0);
+  const [usersTableHeight, setUsersTableHeight] = useState(0);
+  const [gamesTableHeight, setGamesTableHeight] = useState(0);
   //Users
   const [originalUsersData] = useState([...usersDummyData]);
   const [usersData, setUsersData] = useState([...usersDummyData]);
@@ -91,9 +92,9 @@ function App() {
             prevPageHandler={prevPageUsersHandler}
             page={usersPage}
             range={usersRange.length}
-            setTableHeight={setTableHeight}
-            tableHeight={tableHeight}
-          >
+            tableHeight={usersTableHeight}
+            setTableHeight={setUsersTableHeight}
+            >
             {usersPaginationData.length ? usersPaginationData.map((row) => {
               return (
                 <tr key={row.id}>
@@ -109,14 +110,17 @@ function App() {
           </Table>
         </Card>
 
-        {/* <Card title="Published Games">
+        <Card title="Published Games">
           <Table headers={['Name', 'Category', 'Developer', 'Created At']}
             filterHandler={filterGamesHandler}
             addElementHandler={addNewGame}
             nextPageHandler={nextPageGamesHandler}
             prevPageHandler={prevPageGamesHandler}
             page={gamesPage}
-            range={gamesRange.length}>
+            range={gamesRange.length}
+            tableHeight={gamesTableHeight}
+            setTableHeight={setGamesTableHeight}
+            >
             {gamesPaginationData.length ? gamesPaginationData.map((row) => {
               return (
                 <tr key={row.id}>
@@ -127,7 +131,7 @@ function App() {
                 </tr>)
             }) : <tr><td className={tableStyles.noData}>{NO_DATA}</td></tr>}
           </Table>
-        </Card> */}
+        </Card>
 
       </div>
     </>
