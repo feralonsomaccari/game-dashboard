@@ -4,6 +4,8 @@ import './index.css';
 import App from './component/App'
 import reportWebVitals from './reportWebVitals';
 
+require('./services/mockData')
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
