@@ -1,14 +1,24 @@
+import { useRef, useLayoutEffect, useEffect } from 'react';
 import styles from './Table.module.css'
 import Input from '../Input'
 import Button from '../Button'
 
-const Table = ({ headers, children, actions = true, filterHandler, addElementHandler, nextPageHandler, prevPageHandler, page = 0, range = 0, extraProps }) => {
+const Table = ({ headers, children, filterHandler, addElementHandler, nextPageHandler, prevPageHandler, page = 0, range = 0, tableHeight, setTableHeight, extraProps, }) => {
+    
+    const ref = useRef()
+
+    // Ensures a consistent Table height 
+    useLayoutEffect(() => {
+        if (!children || !children.length) return;
+        if (tableHeight === 0) return setTableHeight(ref.current.clientHeight)
+        ref.current.style.height = `${tableHeight}px`
+    }, [children.length])
 
     if (!headers) return null;
 
     return (
         <>
-            <div className={styles.tableContainer}>
+            <div className={styles.tableContainer} ref={ref}>
                 <div className={styles.toolsContainer}>
                     <Input placeholder='Filter...' onChangeHandler={filterHandler} />
                     <Button text="Add +" clickHandler={addElementHandler} />

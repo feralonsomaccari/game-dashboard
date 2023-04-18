@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./Button.module.css";
 
 const Button = ({ text, clickHandler, disabled = false, extraProps }) => {
@@ -8,4 +9,4 @@ const Button = ({ text, clickHandler, disabled = false, extraProps }) => {
   );
 };
 
-export default Button;
+export default React.memo(Button);
