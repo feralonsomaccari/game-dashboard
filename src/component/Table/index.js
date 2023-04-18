@@ -17,15 +17,12 @@ const Table = ({ headers, children, actions = true, filterHandler, addElementHan
                     <thead className={styles.tableHead}>
                         <tr>
                             {headers.map((header, index) => <th key={index} scope="col">{header}</th>)}
-                            {actions && <th id="action-header" scope="col">Action</th>}
                         </tr>
                     </thead>
                     <tbody className={styles.tableBody}>
                         {children}
                     </tbody>
                 </table>
-
-
             </div>
             {
                 range > 0 && (

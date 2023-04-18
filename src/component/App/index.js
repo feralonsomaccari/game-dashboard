@@ -59,12 +59,14 @@ function App() {
         </Modal>
       )}
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Hi! Welcome to Game Dashboard</h1>
-        <p>Here you can have a quick general look at your users and games.</p>
-        
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>Hi! Welcome to Game Dashboard</h1>
+          <p>Here you can have a quick general look at your users and games.</p>
+        </div>
+
         <div className={styles.countersWrapper}>
-          <Counter value={originalUsersData.length} title="Registered users" type="users" />
-          <Counter value={originalGamesData.length} title="Available games" type="games" />
+          <Counter value={originalUsersData.length} title="Registered Users" type="users" />
+          <Counter value={originalGamesData.length} title="Published Games" type="games" />
         </div>
         <Card title="Registered Users">
           <Table headers={['Username', 'Email', 'Created At']}
