@@ -11,7 +11,7 @@ import Loader from '../Loader'
 
 const NO_DATA = "No data has been found."
 
-const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler, loading, type}) => {
+const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler, loading, type }) => {
 
     const [page, setPage] = useState(1);
     const [paginationData, updatePaginationData, range] = useTable(data, page, 4);
