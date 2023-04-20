@@ -11,7 +11,7 @@ import Loader from '../Loader'
 
 const NO_DATA = "No data has been found"
 
-const TableContainer = ({ title, data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight, deleteHandler }) => {
+const TableContainer = ({ title, data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler }) => {
 
     const [page, setPage] = useState(1);
     const [paginationData, updatePaginationData, range] = useTable(data, page, 4);
@@ -57,7 +57,7 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
                         return <td key={key} data-th={headers[key]} className={key === 'username' ? tableStyles.username : ''}>{row[key]}</td>
                     })}
                     <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
-                        <button className={`${tableStyles.icon} ${tableStyles.edit}`} />
+                        <button className={`${tableStyles.icon} ${tableStyles.edit}`} onClick={() => updateHandler(row)} />
                         <button className={`${tableStyles.icon} ${tableStyles.delete}`} onClick={() => deleteHandler(row.id)} />
                     </td>
                 </tr>

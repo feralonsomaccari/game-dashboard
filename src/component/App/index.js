@@ -21,11 +21,6 @@ function App() {
   const [isDeleteModalShown, setDeleteModalShown] = useState(false);
   const [modalTitle, setModalTitle] = useState('')
   const [currentItem, setCurrentItem] = useState('');
-  const [user, setUser] = useState({
-    username: '',
-    email: ''
-  })
-
 
   useEffect(() => {
     fetch('/api/user')
@@ -44,12 +39,17 @@ function App() {
   }, [])
 
   const addNewUserHandler = () => {
+    setCurrentItem({
+      username: '',
+      email: ''
+    })
     setIsEditCreateShown(true);
     setModalTitle("Create New User")
   }
 
   const createUser = () => {
-    const newUser = user;
+    console.log("qqqq")
+    const newUser = currentItem;
     newUser.id = uuidv4();
     fetch(`/api/user`, { method: "POST", body: JSON.stringify(newUser) })
       .then(data => data.json())
@@ -57,12 +57,27 @@ function App() {
         console.log(data)
         setOriginalUsersData(data);
         setUsersData(data.data);
-        setIsEditCreateShown(false);
+        closeModalHandler();
       })
   }
 
-  const addNewGamesHandler = () => {
+  const updateUserHandler = (user) => {
+    setCurrentItem(user)
     setIsEditCreateShown(true);
+    setModalTitle(`Update ${user.username} data`)
+  }
+
+  const updateUser = () => {
+    fetch(`/api/user`, { method: "PUT", body: JSON.stringify(currentItem) })
+      .then(data => data.json())
+      .then(data => {
+        setOriginalUsersData(data);
+        setUsersData(data.data);
+        closeModalHandler();
+      })
+      .finally(() => {
+        setCurrentItem(false)
+      })
   }
 
   const deleteUserHandler = (id) => {
@@ -84,6 +99,10 @@ function App() {
       })
   }
 
+  const closeModalHandler = () => {
+    setIsEditCreateShown(false);
+    setCurrentItem(false)
+  }
 
   return (
     <>
@@ -92,12 +111,12 @@ function App() {
         <Modal setIsModalShown={setIsEditCreateShown} title={modalTitle}>
           <ConfirmationMenu
             cancelHandler={() => setIsEditCreateShown(false)}
-            acceptHandler={currentItem ? deleteUser : createUser}>
+            acceptHandler={currentItem.id ? updateUser : createUser}>
             <>
               <label htmlFor="form-username" type="value">Username</label>
-              <Input id="form-username" placeholder="Username" onChangeHandler={(e) => setUser(prevUser => ({ ...prevUser, username: e.target.value }))}></Input>
+              <Input id="form-username" placeholder="Username" onChangeHandler={(e) => setCurrentItem(prevUser => ({ ...prevUser, username: e.target.value }))} value={currentItem.username} />
               <label htmlFor="form-email">Email</label>
-              <Input id="form-email" placeholder="Email" type="email" onChangeHandler={(e) => setUser(prevUser => ({ ...prevUser, email: e.target.value }))}></Input>
+              <Input id="form-email" placeholder="Email" type="email" onChangeHandler={(e) => setCurrentItem(prevUser => ({ ...prevUser, email: e.target.value }))} value={currentItem.email} />
             </>
           </ConfirmationMenu>
         </Modal>
@@ -129,9 +148,9 @@ function App() {
           tableHeight={usersTableHeight}
           setTableHeight={setUsersTableHeight}
           deleteHandler={deleteUserHandler}
+          updateHandler={updateUserHandler}
         />
-
-        <TableContainer
+        {/* <TableContainer
           title={"Published Games"}
           data={gamesData}
           originalData={originalGamesData.data}
@@ -141,7 +160,7 @@ function App() {
           tableHeight={gamesTableHeight}
           setTableHeight={setGamesTableHeight}
           deleteHandler={deleteUserHandler}
-        />
+        /> */}
       </div>
     </>
 
