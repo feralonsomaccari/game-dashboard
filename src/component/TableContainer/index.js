@@ -9,13 +9,12 @@ import Input from '../Input'
 import Button from '../Button'
 import Loader from '../Loader'
 
-const NO_DATA = "No data has been found"
+const NO_DATA = "No data has been found."
 
-const TableContainer = ({ title, data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler }) => {
+const TableContainer = ({ title, data, headers, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler, loading }) => {
 
     const [page, setPage] = useState(1);
     const [paginationData, updatePaginationData, range] = useTable(data, page, 4);
-
     const ref = useRef()
 
     // Ensures a consistent Table height 
@@ -27,10 +26,10 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
 
     useEffect(() => {
         updatePaginationData(data, 4)
-    }, [data, originalData])
+    }, [data])
 
     const filterHandler = (event) => {
-        setData(filterRows(originalData, event.target.value))
+        updatePaginationData(filterRows(data, event.target.value))
     }
 
     const nextPageHandler = useCallback(() => {
@@ -44,9 +43,9 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
     }, [page, range])
 
     const sortByColumn = (column) => {
-        const sorted = structuredClone(data);
+        const sorted = structuredClone(paginationData);
         sorted.sort((a, b) => a[column].localeCompare(b[column]))
-        setData(sorted)
+        updatePaginationData(sorted)
     }
 
     const renderTableContent = () => {
@@ -67,7 +66,7 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
 
     return (
         <Card title={title}>
-            {!originalData ? (
+            {loading ? (
                 <div className={styles.loaderContainer}>
                     <Loader />
                 </div>
