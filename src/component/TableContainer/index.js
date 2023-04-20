@@ -76,7 +76,7 @@ const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHei
                     <>
                         <div className={styles.toolsContainer}>
                             <Input placeholder='Filter...' onChangeHandler={filterHandler} ariaLabel="filter table data" />
-                            <Button text="Add +" clickHandler={() => addElementHandler(type)} />
+                            <Button text="Add +" clickHandler={() => addElementHandler(type)} extraProps={{ 'data-testid': 'add-item' }} />
                         </div>
                         <Table headers={headers}
                             filterHandler={filterHandler}
