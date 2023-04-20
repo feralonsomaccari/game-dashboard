@@ -12,6 +12,12 @@ const handlers = [
         usersDummyData.data.splice(indexToRemove, 1);
         return res(ctx.json(usersDummyData));
     }),
+    rest.post('/api/user', (req, res, ctx) => {
+        const newUser = JSON.parse(req.body)
+        usersDummyData.data.push(newUser);
+        newUser.created_at = new Date();
+        return res(ctx.json(usersDummyData));
+    }),
 
     // Handles a Games request
     rest.get('/api/game', (req, res, ctx) => {

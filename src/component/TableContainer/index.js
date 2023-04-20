@@ -75,7 +75,7 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
                 <>
                     <div className={styles.tableContainer} ref={ref}>
                         <div className={styles.toolsContainer}>
-                            <Input placeholder='Filter...' onChangeHandler={filterHandler} />
+                            <Input placeholder='Filter...' onChangeHandler={filterHandler} ariaLabel="filter table data" />
                             <Button text="Add +" clickHandler={addElementHandler} />
                         </div>
                         <Table headers={headers}

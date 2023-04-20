@@ -4,10 +4,10 @@ import Counter from "../Counter"
 import Modal from '../Modal'
 import TableContainer from "../TableContainer"
 import ConfirmationMenu from "../ConfirmationMenu"
+import Input from '../Input'
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  const [isEditCreateShown, setIsEditCreateShown] = useState(false);
-  const [isDeleteModalShown, setDeleteModalShown] = useState(false);
   // Users
   const [originalUsersData, setOriginalUsersData] = useState({});
   const [usersData, setUsersData] = useState([]);
@@ -16,9 +16,15 @@ function App() {
   const [originalGamesData, setOriginalGamesData] = useState({});
   const [gamesData, setGamesData] = useState([]);
   const [gamesTableHeight, setGamesTableHeight] = useState(0);
-
+  // Modals
+  const [isEditCreateShown, setIsEditCreateShown] = useState(false);
+  const [isDeleteModalShown, setDeleteModalShown] = useState(false);
   const [modalTitle, setModalTitle] = useState('')
   const [currentItem, setCurrentItem] = useState('');
+  const [user, setUser] = useState({
+    username: '',
+    email: ''
+  })
 
 
   useEffect(() => {
@@ -37,20 +43,32 @@ function App() {
       })
   }, [])
 
-  useEffect(() => {
-  }, [originalUsersData])
-
   const addNewUserHandler = () => {
     setIsEditCreateShown(true);
+    setModalTitle("Create New User")
+  }
+
+  const createUser = () => {
+    const newUser = user;
+    newUser.id = uuidv4();
+    fetch(`/api/user`, { method: "POST", body: JSON.stringify(newUser) })
+      .then(data => data.json())
+      .then(data => {
+        console.log(data)
+        setOriginalUsersData(data);
+        setUsersData(data.data);
+        setIsEditCreateShown(false);
+      })
   }
 
   const addNewGamesHandler = () => {
     setIsEditCreateShown(true);
   }
-  
+
   const deleteUserHandler = (id) => {
     setDeleteModalShown(true);
     setCurrentItem(id)
+    setModalTitle("Delete User")
   }
 
   const deleteUser = () => {
@@ -66,11 +84,22 @@ function App() {
       })
   }
 
+
   return (
     <>
       {/* Modal */}
       {isEditCreateShown && (
         <Modal setIsModalShown={setIsEditCreateShown} title={modalTitle}>
+          <ConfirmationMenu
+            cancelHandler={() => setIsEditCreateShown(false)}
+            acceptHandler={currentItem ? deleteUser : createUser}>
+            <>
+              <label htmlFor="form-username" type="value">Username</label>
+              <Input id="form-username" placeholder="Username" onChangeHandler={(e) => setUser(prevUser => ({ ...prevUser, username: e.target.value }))}></Input>
+              <label htmlFor="form-email">Email</label>
+              <Input id="form-email" placeholder="Email" type="email" onChangeHandler={(e) => setUser(prevUser => ({ ...prevUser, email: e.target.value }))}></Input>
+            </>
+          </ConfirmationMenu>
         </Modal>
       )}
       {isDeleteModalShown && (

@@ -1,10 +1,20 @@
 .confirmationMenuContainer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0 1.5rem 0;
+}
+
+.contentContainer label {
+  padding: 0.5rem 0;
 }
 
 .footer {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
