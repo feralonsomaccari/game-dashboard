@@ -7,7 +7,7 @@ import tableStyles from "../Table/Table.module.css";
 import Table from "../Table"
 import Input from '../Input'
 import Button from '../Button'
-import Loader from '../Loader'
+import LoadingSpinner from '../LoadingSpinner'
 
 const NO_DATA = "No data has been found."
 
@@ -72,7 +72,7 @@ const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHei
             <div className={styles.tableContainer} ref={ref}>
                 {loading ? (
                     <div className={styles.loaderContainer}>
-                        <Loader />
+                        <LoadingSpinner />
                     </div>
                 ) : (
                     <>

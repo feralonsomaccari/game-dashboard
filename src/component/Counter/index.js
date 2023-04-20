@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './Counter.module.css'
 import Card from '../Card'
-import Loader from '../Loader'
+import LoadingSpinner from '../LoadingSpinner'
 
 const Counter = ({ value = 0, title = "", type = '' }) => {
     return (
         <aside className={styles.counterContainer} data-testid="counter">
             {!value ? (
-                <Loader />
+                <LoadingSpinner />
             ) : (
 
                 <Card>
