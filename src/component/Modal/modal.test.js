@@ -8,7 +8,7 @@ const props = {
 
 describe("<Modal/>", () => {
     it("should have a close button", () => {
-        render(<Modal {...props} />);
+        render(<Modal isOpen={true} {...props} />);
         const closeBtn = screen.getByTestId("close-btn");
         expect(closeBtn).toBeInTheDocument();
     });
