@@ -5,7 +5,7 @@ import Modal from '../Modal'
 import TableContainer from "../TableContainer"
 import ConfirmationMenu from "../ConfirmationMenu"
 import UsersMenu from "../UsersMenu"
-import GamesMenu from "../GamesMenu"
+import GamesForm from "../GamesForm"
 import useUsers from "../../hooks/useUsers"
 import useGames from "../../hooks/useGames"
 
@@ -80,7 +80,7 @@ function App() {
     if (type === 'games') {
       return (
         <ConfirmationMenu onAccept={currentItem.id ? () => { updateGame(currentItem) } : () => createGame(currentItem)}>
-          <GamesMenu currentItem={currentItem} setCurrentItem={setCurrentItem} />
+          <GamesForm currentItem={currentItem} setCurrentItem={setCurrentItem} />
         </ConfirmationMenu>
       )
     }
