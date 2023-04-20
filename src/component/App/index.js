@@ -1,62 +1,102 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import styles from "./App.module.css"
 import Counter from "../Counter"
 import Modal from '../Modal'
 import TableContainer from "../TableContainer"
 import ConfirmationMenu from "../ConfirmationMenu"
-import Input from '../Input'
-import useFetchServer from "../../hooks/useFetchServer"
-import useUsers from "../../hooks/useUsers"
 import UsersMenu from "../UsersMenu"
+import GamesMenu from "../GamesMenu"
+import useUsers from "../../hooks/useUsers"
+import useGames from "../../hooks/useGames"
 
 function App() {
   // Users
-  const [users, createUser, updateUser, deleteUser, usersLoading, error] = useUsers();
+  const [users, createUser, updateUser, deleteUser, usersLoading, usersError] = useUsers();
   const [usersTableHeight, setUsersTableHeight] = useState(0);
   // Games
-  const [gamesData, setGamesData, gamesDataError] = useFetchServer('/api/game');
+  const [games, createGame, updateGame, deleteGame, gamesLoading, gamesError] = useGames();
   const [gamesTableHeight, setGamesTableHeight] = useState(0);
   // Modals
-  const [isEditCreateShown, setIsEditCreateShown] = useState(false);
-  const [isDeleteModalShown, setDeleteModalShown] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
   const [currentItem, setCurrentItem] = useState('');
+  const [modalType, setModalType] = useState('');
+  const [isEditCreateUserShown, setIsEditCreateUserShown] = useState(false);
+  const [isDeleteUserModalShown, setDeleteUserModalShown] = useState(false);
 
   const closeModalHandler = () => {
-    setIsEditCreateShown(false);
-    setDeleteModalShown(false);
+    setIsEditCreateUserShown(false);
+    setDeleteUserModalShown(false);
     setCurrentItem(false)
   }
 
-  const createUserModalHandler = () => {
-    setIsEditCreateShown(true);
-    setCurrentItem({ username: '', email: '' })
-    setModalTitle("Create a new user")
+  const createItemModalHandler = (type) => {
+    setModalType(type)
+    setIsEditCreateUserShown(true);
+    switch (type) {
+      case 'users':
+        setCurrentItem({ username: '', email: '' })
+        setModalTitle("Create a new User")
+        break;
+      case 'users':
+        setCurrentItem({
+          name: "Name",
+          category: "Category",
+          developer: "Developer"
+        })
+        setModalTitle("Publish a new Game")
+        break;
+    }
   }
 
-  const updateUserModalHandler = (user) => {
-    setCurrentItem(user)
-    setIsEditCreateShown(true);
-    setModalTitle(`Update ${user.username} information`)
+  const updateItemModalHandler = (type, item) => {
+    setModalType(type)
+    setIsEditCreateUserShown(true);
+    setCurrentItem(item)
+    switch (type) {
+      case 'users':
+        setModalTitle(`Update ${item?.username} information`)
+        break;
+      case 'users':
+        setModalTitle(`Update ${item?.name} information`)
+        break;
+    }
   }
 
-  const deleteUserModalHandler = (user) => {
-    setDeleteModalShown(true);
-    setCurrentItem(user.id)
-    setModalTitle(`Delete user - ${user.username}`)
+  const deleteItemModalHandler = (type) => {
+    setModalType(type)
+    setDeleteUserModalShown(true);
+    setCurrentItem(type.id)
+    setModalTitle(`Delete ${type}`)
+  }
+
+  const renderCreateEditModal = (type) => {
+    if (type === 'users') {
+      return (
+        <ConfirmationMenu onAccept={currentItem.id ? () => { updateUser(currentItem) } : () => createUser(currentItem)}>
+          <UsersMenu currentItem={currentItem} setCurrentItem={setCurrentItem} />
+        </ConfirmationMenu>
+      )
+    }
+    if (type === 'games') {
+      return (
+        <ConfirmationMenu onAccept={currentItem.id ? () => { updateGame(currentItem) } : () => createGame(currentItem)}>
+          <GamesMenu currentItem={currentItem} setCurrentItem={setCurrentItem} />
+        </ConfirmationMenu>
+      )
+    }
   }
 
   return (
     <>
-      {/* Modal */}
-      <Modal isOpen={isEditCreateShown} onClose={closeModalHandler} title={modalTitle}>
-        <ConfirmationMenu onAccept={currentItem.id ? () => { updateUser(currentItem) } : () => createUser(currentItem)}>
-          <UsersMenu currentItem={currentItem} setCurrentItem={setCurrentItem}></UsersMenu>
-        </ConfirmationMenu>
+      {/* Edit/Create Modal */}
+      <Modal isOpen={isEditCreateUserShown} onClose={closeModalHandler} title={modalTitle}>
+        {renderCreateEditModal(modalType)}
       </Modal>
-      <Modal isOpen={isDeleteModalShown} onClose={closeModalHandler} title={modalTitle}>
-        <ConfirmationMenu onAccept={() => deleteUser(currentItem)} />
+      {/* Delete Modal */}
+      <Modal isOpen={isDeleteUserModalShown} onClose={closeModalHandler} title={modalTitle}>
+        <ConfirmationMenu onAccept={() => modalType === 'user' ? deleteUser(currentItem) : deleteGame(currentItem)} />
       </Modal>
+
       <div className={styles.wrapper}>
         {/* Title */}
         <div className={styles.titleContainer}>
@@ -66,29 +106,33 @@ function App() {
         {/* Counters */}
         <div className={styles.countersWrapper}>
           <Counter value={users?.data?.length} title="Registered Users" type="users" />
-          <Counter value={gamesData?.data?.length} title="Published Games" type="games" />
+          <Counter value={games?.data?.length} title="Published Games" type="games" />
         </div>
         {/* Tables */}
         <TableContainer
           title={"Registered Users"}
+          type="users"
           data={users.data}
           headers={users.headers}
           tableHeight={usersTableHeight}
           setTableHeight={setUsersTableHeight}
-          addElementHandler={createUserModalHandler}
-          deleteHandler={deleteUserModalHandler}
-          updateHandler={updateUserModalHandler}
+          addElementHandler={createItemModalHandler}
+          updateHandler={updateItemModalHandler}
+          deleteHandler={deleteItemModalHandler}
           loading={usersLoading}
         />
-        {/* <TableContainer
+        <TableContainer
           title={"Published Games"}
-          data={gamesData.data}
-          headers={gamesData.headers}
-          addElementHandler={addNewGamesHandler}
+          type="games"
+          data={games.data}
+          headers={games.headers}
           tableHeight={gamesTableHeight}
           setTableHeight={setGamesTableHeight}
-          deleteHandler={deleteUserHandler}
-        /> */}
+          addElementHandler={createItemModalHandler}
+          updateHandler={updateItemModalHandler}
+          deleteHandler={deleteItemModalHandler}
+          loading={gamesLoading}
+        />
       </div>
     </>
 

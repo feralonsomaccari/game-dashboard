@@ -28,7 +28,24 @@ const handlers = [
     // Handles a Games request
     rest.get('/api/game', (req, res, ctx) => {
         return res(ctx.delay(2000), ctx.json(gamesDummyData));
-    })
+    }),
+    rest.delete('/api/game/:id', (req, res, ctx) => { // Delete Games
+        const indexToRemove = gamesDummyData.data.findIndex(item => item.id === req.params.id);
+        gamesDummyData.data.splice(indexToRemove, 1);
+        return res(ctx.json(gamesDummyData));
+    }),
+    rest.post('/api/game', (req, res, ctx) => { // Add Games
+        const newGames = JSON.parse(req.body)
+        gamesDummyData.data.push(newGames);
+        newGames.created_at = new Date();
+        return res(ctx.json(gamesDummyData));
+    }),
+    rest.put('/api/game', (req, res, ctx) => { // Update Games
+        const updateGames = JSON.parse(req.body)
+        const gameIndex = gamesDummyData.data.findIndex(item => item.id === updateGames.id);
+        gamesDummyData.data[gameIndex] = updateGames;
+        return res(ctx.json(gamesDummyData));
+    }),
 ];
 
 const worker = setupWorker(...handlers)

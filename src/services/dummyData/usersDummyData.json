@@ -32,7 +32,7 @@
     }
   ],
   "headers": {
-    "username": "Username",
+    "username": "username",
     "email": "Email",
     "created_at": "Created At"
   }

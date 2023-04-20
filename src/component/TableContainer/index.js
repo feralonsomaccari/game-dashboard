@@ -11,7 +11,7 @@ import Loader from '../Loader'
 
 const NO_DATA = "No data has been found."
 
-const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler, loading }) => {
+const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHeight, setTableHeight, deleteHandler, updateHandler, loading, type}) => {
 
     const [page, setPage] = useState(1);
     const [paginationData, updatePaginationData, range] = useTable(data, page, 4);
@@ -57,8 +57,8 @@ const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHei
                         return <td key={key} data-th={headers[key]} className={key === 'username' ? tableStyles.username : ''}>{row[key]}</td>
                     })}
                     <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
-                        <button className={`${tableStyles.icon} ${tableStyles.edit}`} onClick={() => updateHandler(row)} />
-                        <button className={`${tableStyles.icon} ${tableStyles.delete}`} onClick={() => deleteHandler(row)} />
+                        <button className={`${tableStyles.icon} ${tableStyles.edit}`} onClick={() => updateHandler(type, row)} />
+                        <button className={`${tableStyles.icon} ${tableStyles.delete}`} onClick={() => deleteHandler(type, row)} />
                     </td>
                 </tr>
             )
@@ -76,7 +76,7 @@ const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHei
                     <>
                         <div className={styles.toolsContainer}>
                             <Input placeholder='Filter...' onChangeHandler={filterHandler} ariaLabel="filter table data" />
-                            <Button text="Add +" clickHandler={addElementHandler} />
+                            <Button text="Add +" clickHandler={() => addElementHandler(type)} />
                         </div>
                         <Table headers={headers}
                             filterHandler={filterHandler}
