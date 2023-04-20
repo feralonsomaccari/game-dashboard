@@ -7,6 +7,7 @@
   --color-text-secondary: #ffffff;
   --color-disabled: #edeef9;
   --color-loader: #d4d4d4;
+  --color-overlay: rgba(0, 0, 0, 0.531);;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #edeef9;
+  background-color: var(--color-bg-primary);
 }
 
 code {

@@ -37,7 +37,7 @@
 }
 
 .tableBody tr {
-  background-color: #fff;
+  background-color: var(--color-primary);
   border: none;
 }
 

@@ -2,7 +2,7 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.531);
+  background-color: var(--color-overlay);
   z-index: 9;
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@
   position: fixed;
   width: 350px;
   height: fit-content;
-  background-color: #fff;
+  background-color: var(--color-primary);
   z-index: 10;
   top: 50%;
   transform: translateY(-50%);
@@ -26,6 +26,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 4px;
 }
 
 .header {
@@ -33,8 +34,8 @@
   justify-content: space-between;
 }
 
-.header h3{
- margin: 0;
+.header h3 {
+  margin: 0;
 }
 
 .closeButton {
