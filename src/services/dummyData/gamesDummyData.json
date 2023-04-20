@@ -110,6 +110,6 @@
     "name": "Name",
     "category": "Category",
     "developer": "Developer",
-    "published_at": "Created At"
+    "created_at": "Published At"
   }
 }
