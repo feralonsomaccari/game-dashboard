@@ -16,6 +16,7 @@
 .tableHead th {
   display: none;
   color: var(--color-text-primary);
+  cursor: pointer;
 }
 
 .tableBody tr::before {
