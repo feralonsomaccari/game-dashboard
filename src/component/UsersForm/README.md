@@ -1,6 +1,6 @@
-# GamesForm
+# UsersForm
 
-This is a simple Form to Create or Edit Games
+This is a simple Form to Create or Edit Users
 
 ## Properties
 
