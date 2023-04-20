@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect, useCallback, useRef } from 'react
 import styles from './TableContainer.module.css'
 import Card from '../Card'
 import useTable from "../../hooks/useTablePagination";
-import { filterRows } from "../utils"
+import { filterRows, formatDate } from "../utils"
 import tableStyles from "../Table/Table.module.css";
 import Table from "../Table"
 import Input from '../Input'
@@ -54,7 +54,9 @@ const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHei
             return (
                 <tr key={row.id}>
                     {Object.keys(headers).map((key) => {
-                        return <td key={key} data-th={headers[key]} className={key === 'username' ? tableStyles.username : ''}>{row[key]}</td>
+                        return <td key={key} data-th={headers[key]} className={key === 'username' ? tableStyles.username : ''}>
+                            {key === 'created_at' ? formatDate(row[key]) : row[key]}
+                        </td>
                     })}
                     <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
                         <button className={`${tableStyles.icon} ${tableStyles.edit}`} onClick={() => updateHandler(type, row)} />

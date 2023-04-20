@@ -4,3 +4,7 @@ export const filterRows = (rows = [], searchValue = '') => {
         return values.join(" ").match(new RegExp(searchValue.toLowerCase(), "g"))
     })
 }
+
+export const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("en-UK");
+}  
