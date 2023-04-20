@@ -72,7 +72,7 @@ function App() {
     setModalType(type)
     setDeleteUserModalShown(true);
     setCurrentItem(item.id)
-    setModalTitle(`Delete ${item}`)
+    setModalTitle(`Delete ${type === 'users' ? item?.username : item?.name}`)
   }
 
   const renderCreateEditModal = (type) => {
