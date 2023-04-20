@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const calculateRange = (data, rowsPerPage) => {
+    if(!data || !data.length) return [];
     const range = [];
     const num = Math.ceil(data.length / rowsPerPage);
     for (let i = 1; i <= num; i++) {
