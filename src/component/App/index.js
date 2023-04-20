@@ -62,11 +62,11 @@ function App() {
     }
   }
 
-  const deleteItemModalHandler = (type) => {
+  const deleteItemModalHandler = (type, item) => {
     setModalType(type)
     setDeleteUserModalShown(true);
-    setCurrentItem(type.id)
-    setModalTitle(`Delete ${type}`)
+    setCurrentItem(item.id)
+    setModalTitle(`Delete ${item}`)
   }
 
   const renderCreateEditModal = (type) => {
@@ -94,7 +94,7 @@ function App() {
       </Modal>
       {/* Delete Modal */}
       <Modal isOpen={isDeleteUserModalShown} onClose={closeModalHandler} title={modalTitle}>
-        <ConfirmationMenu onAccept={() => modalType === 'user' ? deleteUser(currentItem) : deleteGame(currentItem)} />
+        <ConfirmationMenu onAccept={() => modalType === 'users' ? deleteUser(currentItem) : deleteGame(currentItem)} />
       </Modal>
 
       <div className={styles.wrapper}>
