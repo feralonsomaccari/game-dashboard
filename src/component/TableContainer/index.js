@@ -41,7 +41,7 @@ const TableContainer = ({ title, data, headers = {}, addElementHandler, tableHei
     const prevPageHandler = useCallback(() => {
         if (page <= 1) return;
         setPage(page - 1);
-    }, [page, range])
+    }, [page])
 
     const sortByColumn = (column) => {
         const sorted = structuredClone(paginationData);

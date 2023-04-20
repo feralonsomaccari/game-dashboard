@@ -37,12 +37,15 @@ function App() {
         setCurrentItem({ username: '', email: '' })
         setModalTitle("Create a new User")
         break;
-      case 'users':
+      case 'games':
         setCurrentItem({
           name: "Name",
           category: "Category",
           developer: "Developer"
         })
+        setModalTitle("Publish a new Game")
+        break;
+      default:
         setModalTitle("Publish a new Game")
         break;
     }
@@ -56,8 +59,11 @@ function App() {
       case 'users':
         setModalTitle(`Update ${item?.username} information`)
         break;
-      case 'users':
+      case 'games':
         setModalTitle(`Update ${item?.name} information`)
+        break;
+      default:
+        setModalTitle("")
         break;
     }
   }
