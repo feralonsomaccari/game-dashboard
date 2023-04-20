@@ -1,7 +1,17 @@
 import Button from '../Button'
 import styles from './ConfirmationMenu.module.css'
 
-const ConfirmationMenu = ({ acceptHandler, cancelHandler, children }) => {
+const ConfirmationMenu = ({ onAccept = () => {}, onCancel = () => {}, handleCloseModal = () => {}, children }) => {
+
+  const acceptHandler = () => {
+    onAccept();
+    handleCloseModal();
+  }
+  const cancelHandler = () => {
+    onCancel();
+    handleCloseModal();
+  }
+
   return (
     <div className={styles.confirmationMenuContainer}>
       <form className={styles.contentContainer}>
