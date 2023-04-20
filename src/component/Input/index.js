@@ -1,7 +1,12 @@
 import React from 'react'
 import styles from './Input.module.css'
 
-const Input = ({ placeholder, onChangeHandler, value = '', ariaLabel, id = '' }) => (
-    <input className={styles.input} placeholder={placeholder} onChange={onChangeHandler} data-testid="input" aria-label={ariaLabel} id={id} maxLength={32} value={value}/>
+const Input = ({ placeholder, onChangeHandler, extraProps = {} }) => (
+    <input
+        className={styles.input}
+        placeholder={placeholder}
+        onChange={onChangeHandler}
+        {...extraProps}
+        data-testid="input"/>
 )
 export default Input

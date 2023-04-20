@@ -1,6 +1,6 @@
 import { setupWorker, rest } from "msw";
-import usersDummyData from "./usersDummyData.json"
-import gamesDummyData from "./gamesDummyData.json"
+import usersDummyData from "./dummyData/usersDummyData.json"
+import gamesDummyData from "./dummyData/gamesDummyData.json"
 
 const handlers = [
     // Handles a Users request

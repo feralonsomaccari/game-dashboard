@@ -1,9 +1,13 @@
-import { useState, Children, cloneElement } from 'react'
+import { useState, useEffect, Children, cloneElement } from 'react'
 import styles from './Modal.module.css'
 
-const Modal = ({ isOpen, onClose = () => {}, children, title }) => {
+const Modal = ({ isOpen, onClose = () => { }, children, title }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(isOpen)
+
+    useEffect(() => {
+        setIsModalOpen(isOpen)
+    }, [isOpen])
 
     const handleClose = () => {
         setIsModalOpen(false)
