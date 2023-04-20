@@ -16,7 +16,7 @@
 .modalContent {
   position: fixed;
   width: 350px;
-  height: 200px;
+  height: fit-content;
   background-color: #fff;
   z-index: 10;
   top: 50%;
@@ -33,6 +33,10 @@
   justify-content: space-between;
 }
 
+.header h3{
+ margin: 0;
+}
+
 .closeButton {
   border: none;
   cursor: pointer;
@@ -41,5 +45,4 @@
 
 .children {
   height: 100%;
-  padding: 10px 0;
 }

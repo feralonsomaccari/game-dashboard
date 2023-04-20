@@ -11,7 +11,7 @@ import Loader from '../Loader'
 
 const NO_DATA = "No data has been found"
 
-const TableContainer = ({ title, data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight }) => {
+const TableContainer = ({ title, data, originalData, headers, setData, addElementHandler, tableHeight, setTableHeight, deleteHandler }) => {
 
     const [page, setPage] = useState(1);
     const [paginationData, updatePaginationData, range] = useTable(data, page, 4);
@@ -27,7 +27,7 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
 
     useEffect(() => {
         updatePaginationData(data, 4)
-    }, [data])
+    }, [data, originalData])
 
     const filterHandler = (event) => {
         setData(filterRows(originalData, event.target.value))
@@ -56,10 +56,10 @@ const TableContainer = ({ title, data, originalData, headers, setData, addElemen
                     {Object.keys(headers).map((key) => {
                         return <td key={key} data-th={headers[key]} className={key === 'username' ? tableStyles.username : ''}>{row[key]}</td>
                     })}
-                    {/* <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
+                    <td data-th='Actions' id="action-header" className={tableStyles.actionsContainer}>
                         <button className={`${tableStyles.icon} ${tableStyles.edit}`} />
-                        <button className={`${tableStyles.icon} ${tableStyles.delete}`} />
-                    </td> */}
+                        <button className={`${tableStyles.icon} ${tableStyles.delete}`} onClick={() => deleteHandler(row.id)} />
+                    </td>
                 </tr>
             )
         })

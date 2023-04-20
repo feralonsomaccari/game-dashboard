@@ -7,6 +7,12 @@ const handlers = [
     rest.get('/api/user', (req, res, ctx) => {
         return res(ctx.delay(1000), ctx.json(usersDummyData));
     }),
+    rest.delete('/api/user/:id', (req, res, ctx) => {
+        const indexToRemove = usersDummyData.data.findIndex(item => item.id === req.params.id);
+        usersDummyData.data.splice(indexToRemove, 1);
+        return res(ctx.json(usersDummyData));
+    }),
+
     // Handles a Games request
     rest.get('/api/game', (req, res, ctx) => {
         return res(ctx.delay(2000), ctx.json(gamesDummyData));

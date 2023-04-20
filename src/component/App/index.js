@@ -3,9 +3,11 @@ import styles from "./App.module.css"
 import Counter from "../Counter"
 import Modal from '../Modal'
 import TableContainer from "../TableContainer"
+import ConfirmationMenu from "../ConfirmationMenu"
 
 function App() {
-  const [isModalShown, setIsModalShown] = useState(false);
+  const [isEditCreateShown, setIsEditCreateShown] = useState(false);
+  const [isDeleteModalShown, setDeleteModalShown] = useState(false);
   // Users
   const [originalUsersData, setOriginalUsersData] = useState({});
   const [usersData, setUsersData] = useState([]);
@@ -14,6 +16,9 @@ function App() {
   const [originalGamesData, setOriginalGamesData] = useState({});
   const [gamesData, setGamesData] = useState([]);
   const [gamesTableHeight, setGamesTableHeight] = useState(0);
+
+  const [modalTitle, setModalTitle] = useState('')
+  const [currentItem, setCurrentItem] = useState('');
 
 
   useEffect(() => {
@@ -32,19 +37,45 @@ function App() {
       })
   }, [])
 
+  useEffect(() => {
+  }, [originalUsersData])
+
   const addNewUserHandler = () => {
-    setIsModalShown(true);
+    setIsEditCreateShown(true);
   }
 
   const addNewGamesHandler = () => {
-    setIsModalShown(true);
+    setIsEditCreateShown(true);
+  }
+  
+  const deleteUserHandler = (id) => {
+    setDeleteModalShown(true);
+    setCurrentItem(id)
+  }
+
+  const deleteUser = () => {
+    fetch(`/api/user/${currentItem}`, { method: "DELETE" })
+      .then(data => data.json())
+      .then(data => {
+        setOriginalUsersData(data);
+        setUsersData(data.data);
+        setDeleteModalShown(false);
+      })
+      .finally(() => {
+        setCurrentItem(false)
+      })
   }
 
   return (
     <>
       {/* Modal */}
-      {isModalShown && (
-        <Modal setIsModalShown={setIsModalShown}>
+      {isEditCreateShown && (
+        <Modal setIsModalShown={setIsEditCreateShown} title={modalTitle}>
+        </Modal>
+      )}
+      {isDeleteModalShown && (
+        <Modal setIsModalShown={setDeleteModalShown} title={modalTitle}>
+          <ConfirmationMenu desc="Are you sure you want to delete an User" cancelHandler={() => setDeleteModalShown(false)} acceptHandler={deleteUser} />
         </Modal>
       )}
       <div className={styles.wrapper}>
@@ -68,6 +99,7 @@ function App() {
           addElementHandler={addNewUserHandler}
           tableHeight={usersTableHeight}
           setTableHeight={setUsersTableHeight}
+          deleteHandler={deleteUserHandler}
         />
 
         <TableContainer
@@ -79,6 +111,7 @@ function App() {
           addElementHandler={addNewGamesHandler}
           tableHeight={gamesTableHeight}
           setTableHeight={setGamesTableHeight}
+          deleteHandler={deleteUserHandler}
         />
       </div>
     </>
